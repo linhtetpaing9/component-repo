@@ -32,6 +32,10 @@ const Home = ({ query }) => {
       name: 'Cards',
       component: 'CardRepo'
     },
+    {
+      name: 'Forms',
+      component: 'FormRepo'
+    }
     // {
     //   name: 'Banners',
     //   component: 'BannerRepo'
