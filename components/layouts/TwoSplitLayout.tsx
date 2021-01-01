@@ -1,12 +1,12 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 
-const TwoNestedLayout = props => {
+const TwoSplitLayout = props => {
   
   return (
     <Row gutter={16}>
       <Col span={8} style={{padding: 12}}>
-        <div className="overflow-scroll" style={{ background: '#fff', padding: 12, maxHeight: 800 }}>
+        <div className="overflow-scroll" style={{ background: '#fff', padding: 12, minHeight: 800 }}>
           {
             props.left ? props.left : null
           }
@@ -23,4 +23,4 @@ const TwoNestedLayout = props => {
   )
 };
 
-export default TwoNestedLayout;
+export default TwoSplitLayout;

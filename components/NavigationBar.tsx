@@ -15,21 +15,7 @@ const NavigationBar = ({ Router }) => {
           <a>Home</a>
         </Link>
       </Menu.Item>
-      <Menu.Item key="/clients">
-        <Link href="/clients">
-          <a>Clients</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="/clients/create">
-        <Link href="/clients/create">
-          <a>Clients Form</a>
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="/batches">
-        <Link href="/batches">
-          <a>Batches</a>
-        </Link>
-      </Menu.Item>
+    
     </Menu>
   )
 }
