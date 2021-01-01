@@ -46,7 +46,7 @@ const Home = ({ query }) => {
 
   const componentEntries = Object.entries(Components[component])
 
-  const activeMenu = data.find(d => d.component == query.component) 
+  const activeMenu = data.find(d => d.component == query.component) || data[0]
   return (
 
     <TwoSplitLayout
