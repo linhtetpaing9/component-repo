@@ -17,8 +17,10 @@
 
 /* Your own custom utilities */
 
-@layer components {
-
+@layer utilities {
+  .p-12{
+    padding: 12px;
+  }
 }
 
 .ant-menu-vertical{
