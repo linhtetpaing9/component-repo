@@ -1,0 +1,30 @@
+@import '~antd/dist/antd.css'; 
+@import '~nprogress/nprogress.css';
+
+@tailwind base;
+
+/* Write your own custom base styles here */
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Write you own custom component styles here */
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+/* Your own custom utilities */
+
+@layer components {
+
+}
+
+.ant-menu-vertical{
+  border: none;
+}
+
+.active-selected{
+  background-color: rgb(217, 211, 223);
+}

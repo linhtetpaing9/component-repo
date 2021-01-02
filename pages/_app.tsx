@@ -4,7 +4,7 @@ import { loadGetInitialProps } from 'next-server/dist/lib/utils'
 import WrappedLayout from '../components/layouts/WrappedLayout'
 import * as NProgress from 'nprogress/nprogress'
 import Router from 'next/router'
-import '../assets/styles.less';
+import '../styles/index.css'
 
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
