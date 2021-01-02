@@ -35,11 +35,11 @@ const Home = ({ query }) => {
     {
       name: 'Forms',
       component: 'FormRepo'
+    },
+    {
+      name: 'Banners',
+      component: 'BannerRepo'
     }
-    // {
-    //   name: 'Banners',
-    //   component: 'BannerRepo'
-    // }
   ];
 
   const component = query.component || data[0].component
