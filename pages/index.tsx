@@ -1,22 +1,33 @@
-import { Menu, Tabs } from 'antd';
-import React from 'react';
+import { Checkbox, Menu, Row, Tabs } from 'antd';
+import React, { useState } from 'react';
 import TwoSplitLayout from '../components/layouts/TwoSplitLayout';
 import Components from '../components/components';
 import Link from 'next/link';
+import dynamic from 'next/dynamic'
+const CodeEditor = dynamic(import('../components/project-components/CodeEditor'), { ssr: false })
 
 const { TabPane } = Tabs;
 
 const DisplayComponents = ({ entries }) => {
+  const [showCode, setShowCode] = useState(false);
   return (
-    <Tabs defaultActiveKey="1" onChange={() => { }}>
-      {
-        entries.map(([key, value], indx) => (
-          <TabPane tab={key} key={`component-${indx}`}>
-            {React.createElement(value)}
-          </TabPane>
-        ))
-      }
-    </Tabs>
+    <>
+      <Checkbox onChange={() => setShowCode(!showCode)}>Show Code</Checkbox>
+      <Tabs defaultActiveKey="1" onChange={() => { }}>
+        {
+          entries.map(([name, component], indx) => (
+            <TabPane tab={name} key={`component-${indx}`}>
+              {
+                showCode ?
+                  <CodeEditor value={component.code} />
+                  :
+                  React.createElement(component)
+              }
+            </TabPane>
+          ))
+        }
+      </Tabs>
+    </>
   )
 }
 
@@ -70,7 +81,9 @@ const Home = ({ query }) => {
         // />
       }
       right={
-        <DisplayComponents entries={componentEntries} />
+        <>
+          <DisplayComponents entries={componentEntries} />
+        </>
       }
     >
 
