@@ -7,7 +7,6 @@ import Link from 'next/link';
 const { TabPane } = Tabs;
 
 const DisplayComponents = ({ entries }) => {
-
   return (
     <Tabs defaultActiveKey="1" onChange={() => { }}>
       {

@@ -1,5 +1,6 @@
 @import '~antd/dist/antd.css'; 
 @import '~nprogress/nprogress.css';
+@import './first-banner-slider.css';
 
 @tailwind base;
 
