@@ -70,6 +70,7 @@ const FirstBannerSlider = () => {
     </section>
   )
 }
+
 FirstBannerSlider.code = `
 import React, { useEffect, useRef } from 'react';
 import { Carousel } from 'antd';
@@ -136,12 +137,78 @@ const FirstBannerSlider = () => {
         {
           banners.map((photo, index) =>
           (
-            <CustomSlide key={` + '`banner-img-${index}`' + `} item={photo} />
+            <CustomSlide key={\`banner-img-\${index}\`} item={photo} />
           ))
         }
       </Carousel>
     </section>
   )
-}`
+}
+export default FirstBannerSlider;
+`
+
+FirstBannerSlider.css = `
+#first__banner__slider .ant-carousel-vertical .slick-dots li button:before{
+  color: transparent;
+}
+#first__banner__slider .ant-carousel-vertical .slick-dots li.slick-active button:before{
+  color: transparent;
+}
+#first__banner__slider .ant-carousel-vertical .slick-dots{
+  z-index: 1;
+}
+#first__banner__slider .ant-carousel-vertical .slick-dots-right {
+  right: 3.7em;
+}
+
+#first__banner__slider .ant-carousel-vertical .slick-dots li.slick-active button {
+  width: 3px;
+  height: 30px;
+}
+#first__banner__slider .ant-carousel-vertical .slick-dots li button {
+  width: 3px;
+  height: 22px;
+}
+#first__banner__slider .ant-carousel-vertical .slick-dots li {
+  height: 30px;
+}
+#first__banner__slider .ant-carousel-vertical ul:before{
+  content: 'PREV';
+  top: -30px;
+  position: absolute;
+  left: -10px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "SourceSansPro";
+  font-size: 12px;
+}
+#first__banner__slider .ant-carousel-vertical ul:after{
+  content: 'NEXT';
+  bottom: -25px;
+  position: absolute;
+  left: -10px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "SourceSansPro";
+  font-size: 12px;
+}
+
+@media screen and (max-width: 425px) {
+  #first__banner__slider .ant-carousel-vertical .slick-dots-right {
+    right: 2.1em;
+  }
+  #first__banner__slider .ant-carousel-vertical .slick-dots li.slick-active button {
+    width: 3px;
+    height: 20px;
+  }
+  #first__banner__slider .ant-carousel-vertical .slick-dots li button {
+    width: 3px;
+    height: 12px;
+  }
+  #first__banner__slider .ant-carousel-vertical .slick-dots li {
+    height: 20px;
+  }
+}
+`
 
 export default FirstBannerSlider;

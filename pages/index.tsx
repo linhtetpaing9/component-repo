@@ -1,4 +1,4 @@
-import { Checkbox, Menu, Row, Tabs } from 'antd';
+import { Checkbox, Col, Menu, Row, Tabs } from 'antd';
 import React, { useState } from 'react';
 import TwoSplitLayout from '../components/layouts/TwoSplitLayout';
 import Components from '../components/components';
@@ -10,19 +10,25 @@ const { TabPane } = Tabs;
 
 const DisplayComponents = ({ entries }) => {
   const [showCode, setShowCode] = useState(false);
+  const [showCss, setShowCss] = useState(false);
   return (
     <>
       <Checkbox onChange={() => setShowCode(!showCode)}>Show Code</Checkbox>
+      <Checkbox onChange={() => setShowCss(!showCss)}>Show Css</Checkbox>
       <Tabs defaultActiveKey="1" onChange={() => { }}>
         {
           entries.map(([name, component], indx) => (
             <TabPane tab={name} key={`component-${indx}`}>
-              {
-                showCode ?
-                  <CodeEditor value={component.code} />
-                  :
-                  React.createElement(component)
-              }
+              { showCode && showCss && <h1 className="text-lg">You also need to import tailwind css</h1>}
+              <Row>
+                <Col span={12}>
+                  { showCode && <CodeEditor value={component.code} mode="tsx" />}
+                </Col>
+                <Col span={12}>
+                  { showCss && <CodeEditor value={component.css} mode="css"/>}
+                </Col>
+              </Row>
+              { !showCode && !showCss && React.createElement(component) }
             </TabPane>
           ))
         }
