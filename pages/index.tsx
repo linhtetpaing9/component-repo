@@ -14,18 +14,18 @@ const DisplayComponents = ({ entries }) => {
   return (
     <>
       <Checkbox onChange={() => setShowCode(!showCode)}>Show Code</Checkbox>
-      <Checkbox onChange={() => setShowCss(!showCss)}>Show Css</Checkbox>
+      <Checkbox onChange={() => setShowCss(!showCss)}>Show Style(less)</Checkbox>
       <Tabs defaultActiveKey="1" onChange={() => { }}>
         {
           entries.map(([name, component], indx) => (
             <TabPane tab={name} key={`component-${indx}`}>
-              {component.tailwind && <h1 className="text-lg">You also need to import tailwind css</h1>}
+              {component.prefix && <h1 className="text-lg">You also need to import custom-prefix.less</h1>}
               <Row>
                 <Col span={12}>
                   { showCode && <CodeEditor key={`component-editor-code-${name}`} value={component.code} mode="tsx" />}
                 </Col>
                 <Col span={12}>
-                  {showCss && <CodeEditor key={`component-editor-css-${name}`} value={component.css} mode="css"/>}
+                  {showCss && <CodeEditor key={`component-editor-css-${name}`} value={component.less} mode="css"/>}
                 </Col>
               </Row>
               { !showCode && !showCss && React.createElement(component) }
