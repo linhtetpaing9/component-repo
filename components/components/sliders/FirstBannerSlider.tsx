@@ -147,6 +147,7 @@ const FirstBannerSlider = () => {
 export default FirstBannerSlider;
 `
 
+FirstBannerSlider.tailwind = true
 FirstBannerSlider.css = `
 #first__banner__slider .ant-carousel-vertical .slick-dots li button:before{
   color: transparent;

@@ -6,21 +6,33 @@ import "ace-builds/src-noconflict/mode-tsx";
 import "ace-builds/src-noconflict/mode-css";
 import "ace-builds/src-noconflict/theme-ambiance";
 
-const CodeEditor = ({ value, mode }) => {
-  function onChange(newValue) {
-    console.log("change", newValue);
-  }
-
+const CodeEditor = (
+  {
+    value,
+    mode,
+    key,
+    onChange,
+    readOnly
+  }:
+    {
+      value: string,
+      mode: string,
+      key: string,
+      onChange?: (v: string) => any
+      readOnly?: boolean
+    }
+): any => {
   return <AceEditor
     mode={mode}
     fontSize={20}
     width="100%"
     height="612px"
-    readOnly={true}
+    readOnly={readOnly}
     theme="ambiance"
     value={value}
     onChange={onChange}
-    name="UNIQUE_ID_OF_DIV"
+    name={key}
+    setOptions={{ useWorker: false }}
     editorProps={{ $blockScrolling: true }}
   />
 }

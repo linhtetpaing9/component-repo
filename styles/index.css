@@ -22,10 +22,17 @@
   .p-12{
     padding: 12px;
   }
+  .min-h-500{
+    min-height: 500px;
+  }
 }
 
 .ant-menu-vertical{
   border: none;
+}
+
+.ant-layout-content{
+  padding: 0 !important;
 }
 
 .active-selected{

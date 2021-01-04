@@ -19,13 +19,13 @@ const DisplayComponents = ({ entries }) => {
         {
           entries.map(([name, component], indx) => (
             <TabPane tab={name} key={`component-${indx}`}>
-              { showCode && showCss && <h1 className="text-lg">You also need to import tailwind css</h1>}
+              {component.tailwind && <h1 className="text-lg">You also need to import tailwind css</h1>}
               <Row>
                 <Col span={12}>
-                  { showCode && <CodeEditor value={component.code} mode="tsx" />}
+                  { showCode && <CodeEditor key={`component-editor-code-${name}`} value={component.code} mode="tsx" />}
                 </Col>
                 <Col span={12}>
-                  { showCss && <CodeEditor value={component.css} mode="css"/>}
+                  {showCss && <CodeEditor key={`component-editor-css-${name}`} value={component.css} mode="css"/>}
                 </Col>
               </Row>
               { !showCode && !showCss && React.createElement(component) }
