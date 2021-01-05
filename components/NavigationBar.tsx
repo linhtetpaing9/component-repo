@@ -20,6 +20,11 @@ const NavigationBar = ({ Router }) => {
           <a>Custom Component</a>
         </Link>
       </Menu.Item>
+      <Menu.Item key="/functions">
+        <Link href="/functions">
+          <a>Functions</a>
+        </Link>
+      </Menu.Item>
     
     </Menu>
   )

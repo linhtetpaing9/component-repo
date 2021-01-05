@@ -11,26 +11,30 @@ const { TabPane } = Tabs;
 const DisplayComponents = ({ entries }) => {
   const [showCode, setShowCode] = useState(false);
   const [showCss, setShowCss] = useState(false);
+
   return (
     <>
       <Checkbox onChange={() => setShowCode(!showCode)}>Show Code</Checkbox>
       <Checkbox onChange={() => setShowCss(!showCss)}>Show Style(less)</Checkbox>
       <Tabs defaultActiveKey="1" onChange={() => { }}>
         {
-          entries.map(([name, component], indx) => (
-            <TabPane tab={name} key={`component-${indx}`}>
-              {component.prefix && <h1 className="text-lg">You also need to import custom-prefix.less</h1>}
-              <Row>
-                <Col span={12}>
-                  { showCode && <CodeEditor key={`component-editor-code-${name}`} value={component.code} mode="tsx" />}
-                </Col>
-                <Col span={12}>
-                  {showCss && <CodeEditor key={`component-editor-css-${name}`} value={component.less} mode="css"/>}
-                </Col>
-              </Row>
-              { !showCode && !showCss && React.createElement(component) }
-            </TabPane>
-          ))
+          entries.map(([name, component], indx) => {
+            const element = React.createElement(component)
+            return (
+              <TabPane tab={name} key={`component-${indx}`}>
+                {component.prefix && <h1 className="text-lg">You also need to import custom-prefix.less</h1>}
+                <Row>
+                  <Col span={12}>
+                    {showCode && <CodeEditor key={`component-editor-code-${name}`} value={component.code} mode="tsx" />}
+                  </Col>
+                  <Col span={12}>
+                    {showCss && <CodeEditor key={`component-editor-css-${name}`} value={component.less} mode="css" />}
+                  </Col>
+                </Row>
+                { !showCode && !showCss && element}
+              </TabPane>
+            )
+          })
         }
       </Tabs>
     </>
@@ -58,11 +62,11 @@ const Home = ({ query }) => {
     }
   ];
 
-  const component = query.component || data[0].component
+  const { component = data[0].component } = query || data[0].component
 
   const componentEntries = Object.entries(Components[component])
 
-  const activeMenu = data.find(d => d.component == query.component) || data[0]
+  const activeMenu = data.find(d => d.component == component) || data[0]
   return (
 
     <TwoSplitLayout
