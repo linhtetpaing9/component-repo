@@ -1,55 +1,14 @@
 // include node fs module
 var fs = require('fs');
 
+function fontSizes(value) {
+  const range = Array.from({ length: value + 1 }, (_, i) => i)
+  return range.map(val => {
+    return `.fs-${val}{ font-size: ${val}px; }`
+  }).join('\n')
+}
 
-// function spacing(items, value) {
-//   const range = Array.from({ length: value + 1 }, (_, i) => i)
-//   const prefixes = [
-//     {
-//       name: '',
-//     },
-//     {
-//       name: 't',
-//       positions: ['top']
-//     },
-//     {
-//       name: 'b',
-//       positions: ['bottom']
-//     },
-//     {
-//       name: 'l',
-//       positions: ['left']
-//     },
-//     {
-//       name: 'r',
-//       positions: ['right']
-//     },
-//     {
-//       name: 'x',
-//       positions: ['left', 'right']
-//     },
-//     {
-//       name: 'y',
-//       positions: ['top', 'bottom']
-//     },
-//   ];
-//   const result = prefixes.map(prefix => {
-//     return range.map(val => {
-//       return items.map(item => {
-//         if (prefix.positions != null) {
-//           const jointPositions = prefix.positions.map(position => `${item}-${position}: ${val}px;`).join(' ');
-//           return `.p-${prefix.name}-${val}{ ${jointPositions}}`
-//         }
-//         if (prefix.name.length <= 0) {
-//           return `.p-${val}{ ${item}: ${val}px; }`
-//         }
-//         return `.p-${prefix.name}-${val}{ ${item}-${prefix.name}: ${val}px; }`
-//       }).join('\n')
-//     }).join('\n')
-//   }).join('\n')
-//   return result;
-// }
-function padding(value) {
+function gutting(value) {
   const range = Array.from({ length: value + 1 }, (_, i) => i)
   const prefixes = [
     {
@@ -80,7 +39,8 @@ function padding(value) {
       positions: ['top', 'bottom']
     },
   ];
-  const result = prefixes.map(prefix => {
+
+  const padding = prefixes.map(prefix => {
     return range.map(val => {
       if (prefix.positions != null) {
         const jointPositions = prefix.positions.map(position => `padding-${position}: ${val}px;`).join(' ');
@@ -92,10 +52,29 @@ function padding(value) {
       return `.p-${prefix.name}-${val}{ padding-${prefix.name}: ${val}px; }`
     }).join('\n')
   }).join('\n')
-  return result;
+  const margin = prefixes.map(prefix => {
+    return range.map(val => {
+      if (prefix.positions != null) {
+        const jointPositions = prefix.positions.map(position => `margin-${position}: ${val}px;`).join(' ');
+        return `.m-${prefix.name}-${val}{ ${jointPositions}}`
+      }
+      if (prefix.name.length <= 0) {
+        return `.m-${val}{ margin: ${val}px; }`
+      }
+      return `.m-${prefix.name}-${val}{ margin-${prefix.name}: ${val}px; }`
+    }).join('\n')
+  }).join('\n')
+  return [padding, margin].join('\n');
 }
 
-fs.writeFile('./styles/padding-prefix.css', padding(100), function (err) {
+function main() {
+  return [
+    gutting(100),
+    fontSizes(100)
+  ].join('\n')
+}
+
+fs.writeFile('./styles/gutting-prefix.css', main(), function (err) {
   if (err) throw err;
   console.log('Padding File is created successfully.');
 });
